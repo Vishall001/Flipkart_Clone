@@ -18,6 +18,7 @@ const Image = styled(Box)`
   & > h5 {
     color: #ffffff;
     font-weight: 600;
+    margin-bottom: 10px;
   }
 `;
 
