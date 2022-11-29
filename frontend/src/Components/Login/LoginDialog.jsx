@@ -2,8 +2,9 @@ import React from "react";
 import { Button, Dialog, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { authenticationSignup } from "../../service/api";
+import { DataContext } from "../../contex/Dataprovider";
 
 const Component = styled(Box)`
   width: 90vh;
@@ -93,6 +94,7 @@ const signupInitialValues = {
 const LoginDialog = ({ open, setOpen }) => {
   const [signup, setSignup] = useState(signupInitialValues);
   const [account, toggleAccount] = useState(accountInitialValues.login);
+  const { setAccount } = useContext(DataContext);
   const handleClose = () => {
     setOpen(false);
     toggleAccount(accountInitialValues.login);
@@ -108,6 +110,10 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const signupUser = async () => {
     let res = await authenticationSignup(signup);
+    if (!res) return;
+
+    handleClose();
+    setAccount(signup.firstname);
   };
   return (
     <Dialog
