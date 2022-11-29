@@ -23,7 +23,7 @@ const Navbar = () => {
     <Component>
       {navData.map((data) => {
         return (
-          <Container>
+          <Container key={data.id}>
             <img src={data.url} atl="Nav" style={{ width: "64px" }} />
             <Text>{data.text}</Text>
           </Container>

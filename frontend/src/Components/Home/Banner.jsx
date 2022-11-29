@@ -38,9 +38,11 @@ const Banner = () => {
       autoPlay={true}
       autoPlaySpeed={4000}
       slidesToSlide={1}
+      showDots={false}
+      keyBoardControl={true}
     >
       {bannerData.map((data) => {
-        return <Image src={data.url} alt="Banner" />;
+        return <Image src={data.url} alt="Banner" key={data.id} />;
       })}
     </Carousel>
   );

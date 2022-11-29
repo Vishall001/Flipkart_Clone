@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Dialog, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 const Component = styled(Box)`
   width: 90vh;
@@ -12,13 +13,12 @@ const Image = styled(Box)`
     url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png)
     center 85% no-repeat;
   height: 100%;
-  width: 40%;
+  width: 28%;
   padding: 45px 35px;
   & > p,
   & > h5 {
     color: #ffffff;
     font-weight: 600;
-    margin-bottom: 10px;
   }
 `;
 
@@ -63,36 +63,70 @@ const CreateAccount = styled(Typography)`
   font-weight: 600;
   cursor: pointer;
 `;
+
+const accountInitialValues = {
+  login: {
+    view: "login",
+    heading: "Login",
+    subHeading: "Get access to your Orders, Wishlist and Recommendations",
+  },
+  signup: {
+    view: "signup",
+    heading: "Looks like you're new here",
+    subHeading: "Signup to get started",
+  },
+};
+
 const LoginDialog = ({ open, setOpen }) => {
+  const [account, toggleAccount] = useState(accountInitialValues.login);
   const handleClose = () => {
     setOpen(false);
+    toggleAccount(accountInitialValues.login);
+  };
+
+  const toggleSignup = () => {
+    toggleAccount(accountInitialValues.signup);
   };
   return (
     <Dialog
       open={open}
-      onClick={handleClose}
+      onClose={handleClose}
       PaperProps={{ sx: { maxWidth: "unset" } }}
     >
       <Component>
         <Box style={{ display: "flex", height: "100%" }}>
           <Image>
-            <Typography variant="h5">Login</Typography>
+            <Typography variant="h5">{account.heading}</Typography>
             <Typography style={{ marginTOp: "20px" }}>
-              Get access to your Orders, Wishlist and Recommendations
+              {account.subHeading}
             </Typography>
           </Image>
-          <Wrapper>
-            <TextField variant="standard" label="Enter Email/Mobile number" />
-            <TextField variant="standard" label="Enter Password" />
-            <Text>
-              By continuing, you agree to Flipkart's Terms of Use and Privacy
-              Policy.
-            </Text>
-            <LoginButton>Login</LoginButton>
-            <Typography style={{ textAlign: "center" }}>Or</Typography>
-            <RequestOpt>Request OTP</RequestOpt>
-            <CreateAccount>New to Flipkart? Create an account</CreateAccount>
-          </Wrapper>
+          {account.view == "login" ? (
+            <Wrapper>
+              <TextField variant="standard" label="Enter Email/Mobile number" />
+              <TextField variant="standard" label="Enter Password" />
+              <Text>
+                By continuing, you agree to Flipkart's Terms of Use and Privacy
+                Policy.
+              </Text>
+              <LoginButton>Login</LoginButton>
+              <Typography style={{ textAlign: "center" }}>Or</Typography>
+              <RequestOpt>Request OTP</RequestOpt>
+              <CreateAccount onClick={() => toggleSignup()}>
+                New to Flipkart? Create an account
+              </CreateAccount>
+            </Wrapper>
+          ) : (
+            <Wrapper>
+              <TextField variant="standard" label="Enter Firstname" />
+              <TextField variant="standard" label="Enter Lastname" />
+              <TextField variant="standard" label="Enter Username" />
+              <TextField variant="standard" label="Enter Email" />
+              <TextField variant="standard" label="Enter Password" />
+              <TextField variant="standard" label="Enter Phone" />
+              <LoginButton>Continue</LoginButton>
+            </Wrapper>
+          )}
         </Box>
       </Component>
     </Dialog>
