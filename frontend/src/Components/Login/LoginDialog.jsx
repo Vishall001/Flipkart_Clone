@@ -83,8 +83,8 @@ const accountInitialValues = {
 };
 
 const signupInitialValues = {
-  first: "",
-  last: "",
+  firstname: "",
+  lastname: "",
   username: "",
   email: "",
   password: "",
@@ -104,7 +104,6 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const onInputChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
-    console.log(signup);
   };
 
   const signupUser = async () => {
@@ -145,13 +144,13 @@ const LoginDialog = ({ open, setOpen }) => {
                 variant="standard"
                 onChange={(e) => onInputChange(e)}
                 label="Enter Firstname"
-                name="first"
+                name="firstname"
               />
               <TextField
                 variant="standard"
                 onChange={(e) => onInputChange(e)}
                 label="Enter Lastname"
-                name="last"
+                name="lastname"
               />
               <TextField
                 variant="standard"

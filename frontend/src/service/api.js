@@ -1,9 +1,15 @@
-import axios from "axios"
-const  URL =`http://localhost:8000`;
-export const authenticationSignup = async (data) => {
-  try {
-  return await  axios.post(`${URL}/signup`,data)
-  } catch (err) {
-    console.log("Error while calling signup api", err);
-  }
+const url = "http://localhost:8000";
+export const authenticationSignup = async (user) => {
+  fetch(`${url}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => console.log("error", error));
 };
