@@ -3,6 +3,7 @@ import { Button, Dialog, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { authenticationSignup } from "../../service/api";
 
 const Component = styled(Box)`
   width: 90vh;
@@ -103,9 +104,12 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const onInputChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
+    console.log(signup);
   };
 
-  const signupUser = () => {};
+  const signupUser = async () => {
+    let res = await authenticationSignup(signup);
+  };
   return (
     <Dialog
       open={open}
@@ -139,37 +143,37 @@ const LoginDialog = ({ open, setOpen }) => {
             <Wrapper>
               <TextField
                 variant="standard"
-                onChange={(e) => onInputChange(e.target.value)}
+                onChange={(e) => onInputChange(e)}
                 label="Enter Firstname"
                 name="first"
               />
               <TextField
                 variant="standard"
-                onChange={(e) => onInputChange(e.target.value)}
+                onChange={(e) => onInputChange(e)}
                 label="Enter Lastname"
                 name="last"
               />
               <TextField
                 variant="standard"
-                onChange={(e) => onInputChange(e.target.value)}
+                onChange={(e) => onInputChange(e)}
                 label="Enter Username"
                 name="username"
               />
               <TextField
                 variant="standard"
-                onChange={(e) => onInputChange(e.target.value)}
+                onChange={(e) => onInputChange(e)}
                 label="Enter Email"
                 name="email"
               />
               <TextField
                 variant="standard"
-                onChange={(e) => onInputChange(e.target.value)}
+                onChange={(e) => onInputChange(e)}
                 label="Enter Password"
                 name="password"
               />
               <TextField
                 variant="standard"
-                onChange={(e) => onInputChange(e.target.value)}
+                onChange={(e) => onInputChange(e)}
                 label="Enter Phone"
                 name="phone"
               />
