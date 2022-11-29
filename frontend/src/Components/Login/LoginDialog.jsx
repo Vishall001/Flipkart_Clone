@@ -7,13 +7,15 @@ import { useState } from "react";
 const Component = styled(Box)`
   width: 90vh;
   height: 70vh;
+  padding: 0;
+  padding-top: 0;
 `;
 const Image = styled(Box)`
   background: #2874f0
     url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png)
     center 85% no-repeat;
-  height: 100%;
-  width: 28%;
+  width: 40%;
+  height: 86%;
   padding: 45px 35px;
   & > p,
   & > h5 {
@@ -24,6 +26,8 @@ const Image = styled(Box)`
 
 const Wrapper = styled(Box)`
   display: flex;
+  overflow: auto;
+
   flex-direction: column;
   padding: 25px 35px;
   flex: 1;
@@ -36,7 +40,7 @@ const Wrapper = styled(Box)`
 
 const LoginButton = styled(Button)`
   text-transforn: none;
-  background: #fb6410;
+  background: #fb641b;
   color: #fff;
   height: 48px;
   border-radius: 2px;
@@ -77,7 +81,16 @@ const accountInitialValues = {
   },
 };
 
+const signupInitialValues = {
+  first: "",
+  last: "",
+  username: "",
+  email: "",
+  password: "",
+  phone: "",
+};
 const LoginDialog = ({ open, setOpen }) => {
+  const [signup, setSignup] = useState(signupInitialValues);
   const [account, toggleAccount] = useState(accountInitialValues.login);
   const handleClose = () => {
     setOpen(false);
@@ -87,6 +100,12 @@ const LoginDialog = ({ open, setOpen }) => {
   const toggleSignup = () => {
     toggleAccount(accountInitialValues.signup);
   };
+
+  const onInputChange = (e) => {
+    setSignup({ ...signup, [e.target.name]: e.target.value });
+  };
+
+  const signupUser = () => {};
   return (
     <Dialog
       open={open}
@@ -97,7 +116,7 @@ const LoginDialog = ({ open, setOpen }) => {
         <Box style={{ display: "flex", height: "100%" }}>
           <Image>
             <Typography variant="h5">{account.heading}</Typography>
-            <Typography style={{ marginTOp: "20px" }}>
+            <Typography style={{ marginTop: "20px" }}>
               {account.subHeading}
             </Typography>
           </Image>
@@ -118,13 +137,43 @@ const LoginDialog = ({ open, setOpen }) => {
             </Wrapper>
           ) : (
             <Wrapper>
-              <TextField variant="standard" label="Enter Firstname" />
-              <TextField variant="standard" label="Enter Lastname" />
-              <TextField variant="standard" label="Enter Username" />
-              <TextField variant="standard" label="Enter Email" />
-              <TextField variant="standard" label="Enter Password" />
-              <TextField variant="standard" label="Enter Phone" />
-              <LoginButton>Continue</LoginButton>
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e.target.value)}
+                label="Enter Firstname"
+                name="first"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e.target.value)}
+                label="Enter Lastname"
+                name="last"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e.target.value)}
+                label="Enter Username"
+                name="username"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e.target.value)}
+                label="Enter Email"
+                name="email"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e.target.value)}
+                label="Enter Password"
+                name="password"
+              />
+              <TextField
+                variant="standard"
+                onChange={(e) => onInputChange(e.target.value)}
+                label="Enter Phone"
+                name="phone"
+              />
+              <LoginButton onClick={() => signupUser()}>Continue</LoginButton>
             </Wrapper>
           )}
         </Box>
