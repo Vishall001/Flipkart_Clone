@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import styled from "@emotion/styled";
 import { useState, useContext } from "react";
 import { authenticationSignup } from "../../service/api";
-import { DataContext } from "../../contex/Dataprovider";
+import { DataContext } from "../../context/Dataprovider";
 
 const Component = styled(Box)`
   width: 90vh;
@@ -96,8 +96,12 @@ const LoginDialog = ({ open, setOpen }) => {
   const [account, toggleAccount] = useState(accountInitialValues.login);
   const { setAccount } = useContext(DataContext);
   const handleClose = () => {
+    console.log("3")
+
     setOpen(false);
     toggleAccount(accountInitialValues.login);
+    console.log("4")
+
   };
 
   const toggleSignup = () => {
@@ -106,13 +110,20 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const onInputChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
+    // console.log(signup.firstname);
   };
 
   const signupUser = async () => {
     let res = await authenticationSignup(signup);
-    if (!res) return;
+    console.log("1",res)
+    
+    if (!res) {
+      return;
+    }
+    console.log("2")
 
     handleClose();
+
     setAccount(signup.firstname);
   };
   return (

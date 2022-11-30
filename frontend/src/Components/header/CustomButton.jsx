@@ -4,7 +4,7 @@ import React, { useState, useContext } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import styled from "@emotion/styled";
 import LoginDialog from "../Login/LoginDialog";
-import { DataContext } from "../../contex/Dataprovider";
+import { DataContext } from "../../context/Dataprovider";
 const Wrapper = styled(Box)`
   display: flex;
   margin: 0 3% 0 auto;
@@ -35,16 +35,19 @@ const LoginButton = styled(Button)`
 const CustomButton = () => {
   const [open, setOpen] = useState(false);
   const { account } = useContext(DataContext);
+  console.log(account)
   const openDialog = () => {
     setOpen(true);
   };
   return (
     <Wrapper>
-      {account ? <Typography>{account}</Typography>:
-      <LoginButton variant="contained" onClick={() => openDialog()}>
-        Login
-      </LoginButton>
-}
+      {account ? (
+        <Typography>{account}</Typography>
+      ) : (
+        <LoginButton variant="contained" onClick={() => openDialog()}>
+          Login
+        </LoginButton>
+      )}
       <Typography style={{ marginTop: "3px", width: "135px" }}>
         Become a Seller
       </Typography>
