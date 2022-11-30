@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import { getProducts } from "../../redux/actions/productAction";
@@ -7,6 +6,8 @@ import Navbar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import Slide from "./Slide";
 import MidSlide from "./MidSlide";
+import MidSection from "./MidSection";
+import { styled } from "@mui/material";
 
 const Container = styled(Box)`
   padding: 10px;
@@ -25,6 +26,7 @@ const Home = () => {
       <Container>
         <Banner />
         <MidSlide products={products} title="Deal of the Day" timer={true} />
+        <MidSection/>
         <Slide products={products} title="Discount for You" timer={false} />
         <Slide products={products} title="Suggesting Items" timer={false} />
         <Slide products={products} title="Top Selection" timer={false} />

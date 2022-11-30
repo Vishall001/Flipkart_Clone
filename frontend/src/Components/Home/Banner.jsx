@@ -1,14 +1,18 @@
-import styled from "@emotion/styled";
 import React from "react";
 
 import Carousel from "react-multi-carousel";
 import { bannerData } from "../../constants/data";
 import "react-multi-carousel/lib/styles.css";
+import { styled } from "@mui/system";
 
-const Image = styled("img")({
+const Image = styled("img")(({ theme }) => ({
   width: "100%",
   height: 280,
-});
+  [theme.breakpoints.down("md")]: {
+    objectFit: "cover",
+    height: 180,
+  },
+}));
 
 const Banner = () => {
   const responsive = {
