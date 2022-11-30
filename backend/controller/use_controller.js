@@ -16,3 +16,18 @@ export const userSignup = async (request, response) => {
     response.status(500).json({ message: error.message });
   }
 };
+
+export const userLogin = async (req, res) => {
+  try {
+    const username = req.body.username;
+    const password = req.body.password;
+    let user = await User.findOne({ username: username, password: password });
+    if (user) {
+      return res.status(200).json(`${username} login successfull`);
+    } else {
+      return res.status(401).json("Invalid login");
+    }
+  } catch (err) {
+    res.status(500).json("Erroe while login", err.mesage);
+  }
+};
