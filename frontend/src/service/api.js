@@ -23,3 +23,17 @@ export  const authenticationSignup = async (user) => {
     console.log(e)
   }
 }
+
+
+
+export  const authenticationLogin= async (user) => {
+  console.log("USER DATA",user)
+  try {
+  return await  axios.post(`${url}/login`, user)
+  } catch (e){
+    console.log(e)
+  }
+}
+
+
+
