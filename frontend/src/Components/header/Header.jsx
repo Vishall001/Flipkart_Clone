@@ -2,15 +2,18 @@ import React from "react";
 import { AppBar, Toolbar, styled, Typography, Box } from "@mui/material";
 import Search from "./Search";
 import CustomButton from "./CustomButton";
+import { Link } from "react-router-dom";
 
 const Styledheader = styled(AppBar)`
   background: #2874f0;
   height: 55px;
 `;
 
-const Component = styled(Box)`
+const Component = styled(Link)`
   margin-left: 12%;
   line-height: 0;
+  text-decoration: none;
+  color: inherit;
 `;
 
 const Subheading = styled(Typography)`
@@ -25,9 +28,9 @@ const PlusImage = styled("img")({
   marginTop: 3,
 });
 
-const CustomButtonwrapper =styled(Box)`
-   margin: 0 5% 0 auto
-`
+const CustomButtonwrapper = styled(Box)`
+  margin: 0 5% 0 auto;
+`;
 const Header = () => {
   const logoURL = `https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png`;
   const subURL =
@@ -35,7 +38,7 @@ const Header = () => {
   return (
     <Styledheader>
       <Toolbar style={{ minHeight: 55 }}>
-        <Component>
+        <Component to="/">
           <img src={logoURL} alt="Flipkart logo" style={{ width: 75 }} />
           <Box style={{ display: "flex" }}>
             <Subheading>
@@ -49,8 +52,7 @@ const Header = () => {
         </Component>
         <Search />
         <CustomButtonwrapper>
-
-        <CustomButton/>
+          <CustomButton />
         </CustomButtonwrapper>
       </Toolbar>
     </Styledheader>

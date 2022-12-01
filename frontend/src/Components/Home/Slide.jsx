@@ -5,6 +5,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Countdown from "react-countdown";
+import { Link } from "react-router-dom";
 const Component = styled(Box)`
   margin-top: 10px;
   background: #ffffff;
@@ -74,12 +75,12 @@ const Slide = ({ products, title, timer }) => {
     <Component>
       <Deal>
         <DealText>{title}</DealText>
-        {
-            timer && <Timer>
+        {timer && (
+          <Timer>
             <img src={timerURL} alt="Timer" style={{ width: "24px" }} />
             <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
           </Timer>
-        }
+        )}
         <ViewAllButton variant="contained" color="primary">
           view all
         </ViewAllButton>
@@ -101,16 +102,18 @@ const Slide = ({ products, title, timer }) => {
       >
         {products.map((pro) => {
           return (
-            <Box textAlign="center" style={{ padding: "25px 15px" }}>
-              <Image src={pro.url} alt="" />
-              <Text style={{ fontWeight: 600, color: "#212121" }}>
-                {pro.title.shortTitle}
-              </Text>
-              <Text style={{ color: "green" }}>{pro.discount}</Text>
-              <Text style={{ color: "#212121", opacity: ".6" }}>
-                {pro.tagline}
-              </Text>
-            </Box>
+            <Link to={`product/${pro.id}`} style={{textDecoration:"none"}}>
+              <Box textAlign="center" style={{ padding: "25px 15px" }}>
+                <Image src={pro.url} alt="" />
+                <Text style={{ fontWeight: 600, color: "#212121" }}>
+                  {pro.title.shortTitle}
+                </Text>
+                <Text style={{ color: "green" }}>{pro.discount}</Text>
+                <Text style={{ color: "#212121", opacity: ".6" }}>
+                  {pro.tagline}
+                </Text>
+              </Box>
+            </Link>
           );
         })}
       </Carousel>
