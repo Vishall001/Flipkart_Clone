@@ -14,13 +14,13 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
           ),
         };
       } else {
-        return { ...state, cartItem: [...state.cartItems, item] };
+        return { ...state, cartItems: [...state.cartItems, item] };
       }
 
     case actionTypes.REMOVE_FROM_CART:
       return {
         ...state,
-        cartItems: state.caetItems.filter((pro) => pro.id !== action.payload),
+        cartItems: state.cartItems.filter((pro) => pro.id !== action.payload),
       };
     default:
       return state;
