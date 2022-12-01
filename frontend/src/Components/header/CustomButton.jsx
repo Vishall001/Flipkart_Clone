@@ -1,26 +1,31 @@
-import { Button, Typography } from "@mui/material";
+import { Button, styled, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState, useContext } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import styled from "@emotion/styled";
 import LoginDialog from "../Login/LoginDialog";
 import { DataContext } from "../../context/Dataprovider";
 import Profile from "./Profile";
-const Wrapper = styled(Box)`
-  display: flex;
-  margin: 0 3% 0 auto;
-  & > button,
-  & > p,
-  & > div {
-    margin-right: 40px;
-    font-size: 16px;
-    align-items: center;
-  }
-`;
 
-const Container = styled(Box)`
-  display: flex;
-`;
+const Wrapper = styled(Box)(({ theme }) => ({
+  margin: '0 3% 0 auto',
+  display: 'flex',
+  '& > *': {
+      marginRight: '40px',
+      fontSize: 16,
+      alignItems: 'center',
+  },
+  [theme.breakpoints.down('md')]: {
+      display: 'block'
+  }
+}));
+
+
+const Container = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  [theme.breakpoints.down('sm')]: {
+      display: 'block'
+  }
+}));
 
 const LoginButton = styled(Button)`
   color: #2874f0;
