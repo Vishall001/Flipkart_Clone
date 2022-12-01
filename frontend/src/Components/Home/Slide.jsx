@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import { Button, Divider, Typography } from "@mui/material";
+import { Button, Divider, Typography ,styled} from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import Carousel from "react-multi-carousel";
