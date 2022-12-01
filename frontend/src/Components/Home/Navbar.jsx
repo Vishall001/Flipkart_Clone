@@ -1,17 +1,16 @@
-import { Typography, Box, styled } from '@mui/material'; 
+import { Typography, Box, styled } from "@mui/material";
 import React from "react";
 import { navData } from "../../constants/data";
 
-
 const Component = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  margin: '55px 130px 0 130px !important',
-  overflowX: 'overlay',
-  [theme.breakpoints.down('lg')]: {
-      margin: '0px !important'
-  }
-}))
+  display: "flex",
+  justifyContent: "space-between",
+  margin: "55px 130px 0 130px !important",
+  overflowX: "overlay",
+  [theme.breakpoints.down("lg")]: {
+    margin: "0px !important",
+  },
+}));
 const Container = styled(Box)`
   padding: 12px 8px;
   text-align: center;
@@ -24,16 +23,18 @@ const Text = styled(Typography)`
 `;
 const Navbar = () => {
   return (
-    <Component>
-      {navData.map((data) => {
-        return (
-          <Container key={data.id}>
-            <img src={data.url} atl="Nav" style={{ width: "64px" }} />
-            <Text>{data.text}</Text>
-          </Container>
-        );
-      })}
-    </Component>
+    <Box style={{ background: "#fff" }}>
+      <Component>
+        {navData.map((data) => {
+          return (
+            <Container key={data.id}>
+              <img src={data.url} atl="Nav" style={{ width: "64px" }} />
+              <Text>{data.text}</Text>
+            </Container>
+          );
+        })}
+      </Component>
+    </Box>
   );
 };
 
