@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { InputBase, Box, List, ListItem, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
 import { getProducts } from "../../redux/actions/productAction";
 import { useDispatch, useSelector } from "react-redux";
 const SearchContainer = styled(Box)`
@@ -31,6 +32,7 @@ const ListWrapper = styled(List)`
 `;
 const Search = () => {
   const [text, setText] = useState();
+
   const getText = (text) => {
     setText(text);
   };
@@ -47,6 +49,7 @@ const Search = () => {
       <InputSearchBase
         placeholder="Search for products, brands and more "
         onChange={(e) => getText(e.target.value)}
+        value={text}
       />
       <SearchIconwrapper>
         <SearchIcon />
@@ -58,7 +61,15 @@ const Search = () => {
               product.title.longTitle.toLowerCase().includes(text.toLowerCase())
             )
             .map((product) => (
-              <ListItem>{product.title.longTitle}</ListItem>
+              <ListItem>
+                <Link
+                  to={`/product/${product.id}`}
+                  onClick={() => setText("")}
+                  style={{ textDecoration: "none",color:"inherit" }}
+                >
+                  {product.title.longTitle}
+                </Link>
+              </ListItem>
             ))}
         </ListWrapper>
       )}
