@@ -1,8 +1,7 @@
 import axios from "axios";
-const url = "https://backend-flipkart.onrender.com/";
+const url = "https://backend-flipkart.onrender.com";
 
 export const authenticationSignup = async (user) => {
-  // console.log("USER DATA", user);
   try {
     return await axios.post(`${url}/signup`, user);
   } catch (e) {
@@ -19,11 +18,3 @@ export const authenticationLogin = async (user) => {
   }
 };
 
-export const payWithPaytm = async (data) => {
-  try {
-    let res = await axios.post(`${url}/payment`, data);
-    return res.data;
-  } catch (err) {
-    console.log(`Error while calling paytm api`);
-  }
-};
