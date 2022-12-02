@@ -1,5 +1,4 @@
 import { Button, Box, styled, ButtonGroup } from "@mui/material";
-import React from "react";
 
 const Component = styled(ButtonGroup)`
   margin-top: 30px;
@@ -10,11 +9,12 @@ const StyledButton = styled(Button)`
 `;
 
 const GroupedButton = () => {
+
   return (
     <Component>
-      <StyledButton>-</StyledButton>
+      <StyledButton >-</StyledButton>
       <Button disabled>1</Button>
-      <StyledButton>+</StyledButton>
+      <StyledButton >+</StyledButton>
     </Component>
   );
 };

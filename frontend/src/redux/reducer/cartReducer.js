@@ -4,15 +4,22 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
       const item = action.payload;
-      const exist = state.cartItems.find((pro) => pro.id == item.id);
 
-      if (exist) {
-        return {
-          ...state,
-          cartItems: state.cartItems.map((data) =>
-            data.product === exist.product ? item : data
-          ),
-        };
+      const existItem = state.cartItems.find(
+        (product) => product.id === item.id
+      );
+
+      if (existItem) {
+        alert("Already in Cart")
+        // console.log("EXIST ::::::", existItem);
+        // return {
+        //   ...state,
+        //   cartItems: state.cartItems.map((x) =>
+        //     x.product === existItem.product
+        //       ? item
+        //       : x
+        //   ),
+        // };
       } else {
         return { ...state, cartItems: [...state.cartItems, item] };
       }
@@ -20,7 +27,9 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
     case actionTypes.REMOVE_FROM_CART:
       return {
         ...state,
-        cartItems: state.cartItems.filter((pro) => pro.id !== action.payload),
+        cartItems: state.cartItems.filter(
+          (product) => product.id !== action.payload
+        ),
       };
     default:
       return state;

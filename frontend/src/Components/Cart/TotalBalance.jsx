@@ -1,5 +1,5 @@
 import { Typography, styled, Box } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -42,7 +42,7 @@ const TotalBalance = ({ cartItems }) => {
     let price = 0;
     let discount = 0;
     cartItems.map((item) => {
-      price += item.price.mrp;
+      price += item.price.mrp ;
       discount += item.price.mrp - item.price.cost;
     });
     setPrice(price);

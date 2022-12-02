@@ -38,7 +38,7 @@ const CartItem = ({ item }) => {
         dispatch(removedFromCart(id))
     }
   return (
-    <Component>
+    <Component >
       <LeftComponent>
         <img src={item.url} alt="Product" style={{ heigth: 110, width: 110 }} />
         <GroupedButton />
