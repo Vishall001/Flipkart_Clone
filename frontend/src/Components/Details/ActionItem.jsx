@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
 import { useState } from "react";
+import { payWithPaytm } from "../../service/api";
+import { post } from "../../utils/paytm";
 const LeftContainer = styled(Box)(({ theme }) => ({
   minWidth: "40%",
   padding: "40px 0 0 80px",
@@ -42,6 +44,15 @@ const ActionItem = ({ product }) => {
     dispatch(addToCart(id, quantity));
     navigate("/cart");
   };
+
+  const buyNow = () => {
+    let res = payWithPaytm({ amount: 500, email: "vishalmandloi@gmail.com" });
+    let info = {
+      action: "https://securegw-stage.paytm.in/order/process",
+      params: res,
+    };
+    post(info);
+  };
   return (
     <LeftContainer>
       <Box
@@ -59,7 +70,11 @@ const ActionItem = ({ product }) => {
       >
         <ShoppingCartIcon /> Add to Cart
       </StyledButton>
-      <StyledButton variant="contained" style={{ background: "#fb541b" }}>
+      <StyledButton
+        variant="contained"
+        style={{ background: "#fb541b" }}
+        onClick={() => buyNow()}
+      >
         <FlashOnIcon /> Buy Now
       </StyledButton>
     </LeftContainer>
