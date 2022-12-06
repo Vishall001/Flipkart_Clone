@@ -11,15 +11,6 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
 
       if (existItem) {
         alert("Already in Cart")
-        // console.log("EXIST ::::::", existItem);
-        // return {
-        //   ...state,
-        //   cartItems: state.cartItems.map((x) =>
-        //     x.product === existItem.product
-        //       ? item
-        //       : x
-        //   ),
-        // };
       } else {
         return { ...state, cartItems: [...state.cartItems, item] };
       }

@@ -123,7 +123,6 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const onInputChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
-    // console.log(signup.firstname);
   };
 
   const onValueChange = (e) => {
@@ -132,7 +131,6 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const loginUser = async () => {
     let res = await authenticationLogin(login);
-    console.log("RES",res);
    if(!res){
     setError(true)
    }else{
@@ -144,12 +142,9 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const signupUser = async () => {
     let res = await authenticationSignup(signup);
-    console.log("1", res);
-
     if (!res) {
       return;
     }
-    console.log("2");
 
     handleClose();
 
